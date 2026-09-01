@@ -38,12 +38,17 @@
       </div>
 
       <div class="mt-4 d-flex gap-2">
+             <div class="mt-4 d-flex gap-2">
+        <%= button_to plant_chats_path(@plant), method: :post, class: "btn btn-success" do %>
+          <i class="fas fa-comment"></i> Ask AI About This Plant
+        <% end %>
         <%= link_to edit_plant_path(@plant), class: "btn btn-outline-warning" do %>
           <i class="fas fa-edit"></i> Edit
         <% end %>
         <%= button_to plant_path(@plant), method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "Are you sure you want to delete #{@plant.nickname}?" } do %>
           <i class="fas fa-trash"></i> Delete
         <% end %>
+      </div>
       </div>
     </div>
   </div>
