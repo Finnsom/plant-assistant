@@ -44,7 +44,7 @@ gem "bootstrap", "~> 5.3"
 gem "autoprefixer-rails"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "dartsass-rails"
-
+gem "devise"
 
 group :development, :test do
   gem "dotenv-rails"
