@@ -1,0 +1,7 @@
+<%= simple_form_for plant do |f| %>
+  <%= f.input :nickname %>
+  <%= f.input :species %>
+  <%= f.input :location %>
+  <%= f.input :last_watered_on, as: :date %>
+  <%= f.submit class: "btn btn-success" %>
+<% end %>

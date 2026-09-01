@@ -1,0 +1,50 @@
+ <div class="container mt-4">
+  <%= link_to plants_path, class: "text-decoration-none mb-3 d-inline-block" do %>
+    <i class="fas fa-arrow-left"></i> Back to My Plants
+  <% end %>
+
+  <div class="card shadow-sm border-0 mt-3" style="border-radius: 12px;">
+    <div class="card-body p-4">
+      <div class="d-flex justify-content-between align-items-start">
+        <div>
+          <h1 class="mb-1"><%= @plant.nickname %></h1>
+          <p class="text-muted fst-italic fs-5"><%= @plant.species %></p>
+        </div>
+        <span style="font-size: 3rem;">🪴</span>
+      </div>
+
+      <hr>
+
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <p class="fs-5">
+            <i class="fas fa-map-marker-alt" style="color: #2d6a4f;"></i>
+            <strong>Location:</strong> <%= @plant.location %>
+          </p>
+        </div>
+        <div class="col-md-6">
+          <p class="fs-5">
+            <i class="fas fa-tint" style="color: #74c0fc;"></i>
+            <strong>Last Watered:</strong>
+            <% if @plant.last_watered_on %>
+              <%= @plant.last_watered_on.strftime("%B %d, %Y") %>
+              <% days_ago = (Date.today - @plant.last_watered_on).to_i %>
+              <small class="text-muted">(<%= days_ago %> days ago)</small>
+            <% else %>
+              <span class="text-danger">Never</span>
+            <% end %>
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-4 d-flex gap-2">
+        <%= link_to edit_plant_path(@plant), class: "btn btn-outline-warning" do %>
+          <i class="fas fa-edit"></i> Edit
+        <% end %>
+        <%= button_to plant_path(@plant), method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "Are you sure you want to delete #{@plant.nickname}?" } do %>
+          <i class="fas fa-trash"></i> Delete
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
