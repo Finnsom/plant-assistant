@@ -1,2 +1,4 @@
-<h1>Plants#edit</h1>
-<p>Find me in app/views/plants/edit.html.erb</p>
+<div class="container mt-4">
+  <h1>Edit <%= @plant.nickname %></h1>
+  <%= render "form", plant: @plant %>
+</div>
