@@ -45,6 +45,7 @@ gem "autoprefixer-rails"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "dartsass-rails"
 gem "devise"
+gem "ruby_llm", "~> 1.2.0"
 
 group :development, :test do
   gem "dotenv-rails"
