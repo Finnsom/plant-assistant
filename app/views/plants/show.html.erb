@@ -1,0 +1,15 @@
+<div class="container mt-4">
+  <%= link_to "← Back to My Plants", plants_path, class: "btn btn-outline-secondary mb-3" %>
+
+  <div class="card">
+    <div class="card-body">
+      <h1><%= @plant.nickname %></h1>
+      <p class="text-muted"><%= @plant.species %></p>
+
+      <ul class="list-unstyled mt-3">
+        <li><strong><i class="fas fa-map-marker-alt"></i> Location:</strong> <%= @plant.location %></li>
+        <li><strong><i class="fas fa-tint"></i> Last Watered:</strong> <%= @plant.last_watered_on&.strftime("%B %d, %Y") || "Never" %></li>
+      </ul>
+    </div>
+  </div>
+</div>
