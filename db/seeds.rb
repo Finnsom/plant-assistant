@@ -50,7 +50,7 @@ Plant.create!(
   user: user1
 )
 
-Plant.create!(
+fernie = Plant.create!(
   nickname: "Fernie",
   species: "Boston Fern",
   location: "Bathroom",
@@ -66,4 +66,31 @@ Plant.create!(
   user: user2
 )
 
-puts "Seeded #{User.count} users and #{Plant.count} plants!"
+puts "Creating a past conversation..."
+fernie_chat = Chat.create!(
+  title: "The leaf tips have gone brown and crispy",
+  user: user2,
+  plant: fernie
+)
+
+fernie_chat.messages.create!(
+  role: "user",
+  content: "The leaf tips have gone brown and crispy"
+)
+
+fernie_chat.messages.create!(
+  role: "assistant",
+  content: "Crispy brown tips on a Boston Fern almost always mean **dry air** rather than dry soil. Bathrooms are usually humid, but if yours has an extractor fan or gets a lot of airflow, the humidity drops fast after a shower and the fronds dry out at the edges first.\n\n**This week, move Fernie onto a tray of pebbles with water in it**, keeping the pot above the waterline. The water evaporating around the plant raises the humidity right where it matters. Don't trim the brown tips yet — wait and see whether the new growth comes in clean."
+)
+
+fernie_chat.messages.create!(
+  role: "user",
+  content: "Should I be misting it as well?"
+)
+
+fernie_chat.messages.create!(
+  role: "assistant",
+  content: "Misting feels productive but the effect only lasts a few minutes, so it won't fix the underlying dryness. The pebble tray is doing the real work here.\n\nIf you want to do something extra, **check the soil is staying evenly damp** rather than drying out between waterings. Ferns don't like to dry out fully. You're on the right track — the fact you spotted this early means Fernie should recover fine."
+)
+
+puts "Seeded #{User.count} users, #{Plant.count} plants and #{Chat.count} chat with #{Message.count} messages!"
