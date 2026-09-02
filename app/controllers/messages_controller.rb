@@ -53,6 +53,7 @@ class MessagesController < ApplicationController
     details = ["The plant is a #{@plant.species}, nicknamed #{@plant.nickname}."]
     details << "It is kept in the #{@plant.location}." if @plant.location.present?
     details << "It was last watered on #{@plant.last_watered_on}." if @plant.last_watered_on.present?
+    details << "Today's date is #{Date.today.strftime('%-d %B %Y')}."
     details.join(" ")
   end
 

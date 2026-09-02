@@ -1,8 +1,8 @@
-<%= simple_form_for [chat, message] do |f| %>
+<%= simple_form_for [chat, message], html: { data: { controller: "thinking", action: "submit->thinking#call" } } do |f| %>
   <% if chat.messages.any? %>
     <%= f.input :content, label: "Anything else?", required: true, placeholder: "How often should I do that?" %>
   <% else %>
     <%= f.input :content, label: "What's wrong with your plant?", required: true, placeholder: "The bottom leaves are going yellow..." %>
   <% end %>
-  <%= f.button :submit, "Ask", class: "btn btn-success" %>
+  <%= f.button :submit, "Ask", class: "btn btn-success", data: { thinking_target: "button" } %>
 <% end %>
