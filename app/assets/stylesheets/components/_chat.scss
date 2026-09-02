@@ -1,0 +1,110 @@
+.chat {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 2rem 1rem 5rem;
+}
+
+.chat-back {
+  font-size: 0.875rem;
+  color: $bark;
+  text-decoration: none;
+
+  &:hover {
+    color: $moss;
+  }
+}
+
+.chat-title {
+  font-family: $headers-font;
+  font-size: 1.75rem;
+  line-height: 1.25;
+  color: $ink;
+  margin: 0.75rem 0 2.75rem;
+}
+
+.message-user {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+}
+
+.message-user__bubble {
+  max-width: 80%;
+  padding: 0.625rem 1rem;
+  background-color: $moss-light;
+  border-radius: 1rem 1rem 0.25rem 1rem;
+  font-size: 0.9375rem;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.message-assistant {
+  margin-bottom: 3rem;
+  padding-left: 1.5rem;
+  border-left: 2px solid $moss;
+  font-family: $reply-font;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  strong {
+    color: $moss;
+    font-weight: 600;
+  }
+}
+
+.chat-form {
+  padding-top: 1.75rem;
+  border-top: 1px solid $line;
+
+  label {
+    font-size: 0.875rem;
+    color: $bark;
+    margin-bottom: 0.5rem;
+  }
+
+  textarea {
+    border: 1px solid $line;
+    border-radius: 0.75rem;
+    padding: 0.875rem 1rem;
+    background-color: #fff;
+
+    &:focus {
+      border-color: $moss;
+      box-shadow: 0 0 0 3px rgba(62, 122, 90, 0.15);
+    }
+  }
+
+  .btn {
+    margin-top: 0.75rem;
+    padding: 0.625rem 1.75rem;
+    background-color: $moss;
+    border: none;
+    border-radius: 999px;
+    color: #fff;
+    font-weight: 600;
+
+    &:hover {
+      background-color: darken($moss, 6%);
+    }
+
+    &:disabled {
+      background-color: $bark;
+      opacity: 1;
+    }
+  }
+}
+
+#messages:empty + #new_message_container .chat-form {
+  padding-top: 0;
+  border-top: none;
+}

@@ -1,9 +1,9 @@
-<div class="container py-4">
-  <%= link_to "← Back to #{@chat.plant.nickname}", plant_path(@chat.plant) %>
+<div class="chat">
+  <%= link_to "← #{@chat.plant.nickname}", plant_path(@chat.plant), class: "chat-back" %>
 
-  <h1 id="chat_title" class="my-3"><%= @chat.display_title %></h1>
+  <h1 id="chat_title" class="chat-title"><%= @chat.display_title %></h1>
 
-  <div id="messages" class="mb-4">
+  <div id="messages">
     <%= render "messages/messages", messages: @chat.messages %>
   </div>
 
