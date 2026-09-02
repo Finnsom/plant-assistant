@@ -18,9 +18,12 @@ class MessagesController < ApplicationController
     @message.role = "user"
 
     if @message.save
-      ruby_llm_chat = RubyLLM.chat
-      response = ruby_llm_chat.with_instructions(instructions).ask(@message.content)
-      Message.create(role: "assistant", content: response.content, chat: @chat)
+      @ruby_llm_chat = RubyLLM.chat
+      build_conversation_history
+      response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
+
+      @assistant_message = @chat.messages.create(role: "assistant", content: response.content)
+      @chat.generate_title_from_first_message
 
       redirect_to chat_path(@chat)
     else
@@ -29,6 +32,12 @@ class MessagesController < ApplicationController
   end
 
   private
+
+  def build_conversation_history
+    @chat.messages.each do |message|
+      @ruby_llm_chat.add_message(message)
+    end
+  end
 
   def message_params
     params.require(:message).permit(:content)
