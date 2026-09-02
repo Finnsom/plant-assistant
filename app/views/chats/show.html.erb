@@ -1,28 +1,13 @@
 <div class="container py-4">
   <%= link_to "← Back to #{@chat.plant.nickname}", plant_path(@chat.plant) %>
 
-  <h1 class="my-3"><%= @chat.title %></h1>
+  <h1 id="chat_title" class="my-3"><%= @chat.display_title %></h1>
 
   <div id="messages" class="mb-4">
-    <% @chat.messages.each do |message| %>
-      <% if message.role == "user" %>
-        <div class="d-flex justify-content-end mb-3">
-          <div class="bg-light px-3 py-2 rounded">
-            <%= message.content %>
-          </div>
-        </div>
-      <% else %>
-        <div class="d-flex justify-content-start mb-4">
-          <div class="px-3 py-2">
-            <%= simple_format message.content %>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
+    <%= render "messages/messages", messages: @chat.messages %>
   </div>
 
-  <%= simple_form_for [@chat, @message] do |f| %>
-    <%= f.input :content, label: "What's wrong with your plant?", required: true, placeholder: "The bottom leaves are going yellow..." %>
-    <%= f.button :submit, "Ask", class: "btn btn-success" %>
-  <% end %>
+  <div id="new_message_container">
+    <%= render "messages/form", chat: @chat, message: @message %>
+  </div>
 </div>

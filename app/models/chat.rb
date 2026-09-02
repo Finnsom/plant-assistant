@@ -4,6 +4,12 @@ class Chat < ApplicationRecord
 
   has_many :messages, dependent: :destroy
 
+  def display_title
+    return "New chat about #{plant.nickname}" if title == "Untitled"
+
+    title
+  end
+
   def generate_title_from_first_message
     return unless title == "Untitled"
 
