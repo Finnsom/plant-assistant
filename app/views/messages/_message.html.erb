@@ -5,7 +5,7 @@
     </div>
   </div>
 <% elsif message.role == "assistant" %>
-  <div class="message-assistant">
-    <%= raw(render_markdown(message.content)) %>
+  <div class="message-assistant" id="<%= dom_id(message) %>">
+    <%= message.content.present? ? raw(render_markdown(message.content)) : "…" %>
   </div>
 <% end %>
