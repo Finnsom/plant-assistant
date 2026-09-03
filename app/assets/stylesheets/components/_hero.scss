@@ -1,0 +1,10 @@
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 85vh;
+  padding: 3rem 1.5rem;
+}
+.hero__inner {
+  max-width: 42rem;
+}

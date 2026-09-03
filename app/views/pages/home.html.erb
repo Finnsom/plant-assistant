@@ -1,9 +1,15 @@
-<div class="container text-center py-5">
-  <h1 class="display-4">Leafy</h1>
-  <p class="lead">Know what's wrong with your houseplant, and what to do about it.</p>
-  <p class="mb-4">
-    Add your plants, snap a photo when something looks off, and get a diagnosis
-    based on the plant you actually own.
-  </p>
-  <%= link_to "Get started", new_user_registration_path, class: "btn btn-success btn-lg" %>
+<div class="hero">
+  <div class="hero__inner text-center">
+    <h1 class="display-4">Leafy</h1>
+    <p class="lead">Know what's wrong with your houseplant, and what to do about it.</p>
+    <p class="mb-4">
+      Add your plants, snap a photo when something looks off, and get a diagnosis
+      based on the plant you actually own.
+    </p>
+    <% if user_signed_in? %>
+      <%= link_to "My plants", plants_path, class: "btn btn-leafy btn-lg" %>
+    <% else %>
+      <%= link_to "Get started", new_user_registration_path, class: "btn btn-leafy btn-lg" %>
+    <% end %>
+  </div>
 </div>
