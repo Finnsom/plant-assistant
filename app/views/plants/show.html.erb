@@ -10,7 +10,11 @@
           <h1 class="mb-1"><%= @plant.nickname %></h1>
           <p class="text-muted fst-italic fs-5"><%= @plant.species %></p>
         </div>
-        <span style="font-size: 3rem;">🪴</span>
+        <% if @plant.photo.attached? %>
+          <%= image_tag @plant.photo, class: "plant-photo plant-photo--detail", alt: "Photo of #{@plant.nickname}" %>
+        <% else %>
+          <span style="font-size: 3rem;">🪴</span>
+        <% end %>
       </div>
 
       <hr>
@@ -34,11 +38,15 @@
               <span class="text-danger">Never</span>
             <% end %>
           </p>
+          <div class="d-flex justify-content-md-end">
+            <%= button_to watered_today_plant_path(@plant), method: :patch, class: "btn btn-primary" do %>
+              <i class="fas fa-tint"></i> Watered today
+            <% end %>
+          </div>
         </div>
       </div>
 
       <div class="mt-4 d-flex gap-2">
-             <div class="mt-4 d-flex gap-2">
         <%= button_to plant_chats_path(@plant), method: :post, class: "btn btn-success" do %>
           <i class="fas fa-comment"></i> Ask AI About This Plant
         <% end %>
@@ -48,7 +56,6 @@
         <%= button_to plant_path(@plant), method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "Are you sure you want to delete #{@plant.nickname}?" } do %>
           <i class="fas fa-trash"></i> Delete
         <% end %>
-      </div>
       </div>
     </div>
   </div>

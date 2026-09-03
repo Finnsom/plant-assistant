@@ -16,6 +16,7 @@ class Chat < ApplicationRecord
     first_user_message = messages.where(role: "user").order(:created_at).first
     return if first_user_message.nil?
 
-    update(title: first_user_message.content.truncate(40))
+    title = first_user_message.content.presence || "Plant photo diagnosis"
+    update(title: title.truncate(40))
   end
 end
