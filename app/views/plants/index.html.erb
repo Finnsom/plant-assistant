@@ -1,69 +1,57 @@
-<div class="container mt-4">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1><i class="fas fa-leaf" style="color: #2d6a4f;"></i> My Plants</h1>
-    <%= link_to new_plant_path, class: "btn btn-success btn-lg" do %>
-      <i class="fas fa-plus"></i> Add a Plant
-    <% end %>
+<div class="plants">
+  <div class="plants-header">
+    <h1 class="plants-title">My plants</h1>
+    <%= link_to "Add a plant", new_plant_path, class: "btn btn-leafy" %>
   </div>
 
   <% if @plants.any? %>
-    <div class="row">
+    <div class="plant-grid">
       <% @plants.each do |plant| %>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-sm border-0" style="border-radius: 12px; transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-            <%= link_to plant_path(plant), style: "text-decoration: none; color: inherit;" do %>
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-start">
-                  <div>
-                    <h4 class="card-title mb-1"><%= plant.nickname %></h4>
-                    <p class="text-muted fst-italic mb-3"><%= plant.species %></p>
-                  </div>
-                  <% if plant.photo.attached? %>
-                    <%= image_tag plant.photo, class: "plant-photo plant-photo--card", alt: "Photo of #{plant.nickname}" %>
-                  <% else %>
-                    <span style="font-size: 2rem;">🪴</span>
-                  <% end %>
+        <div class="plant-card">
+          <%= link_to plant_path(plant), class: "plant-card__link" do %>
+            <div class="plant-card__media">
+              <% if plant.photo.attached? %>
+                <%= image_tag plant.photo, class: "plant-card__photo", alt: plant.nickname %>
+              <% else %>
+                <div class="plant-card__placeholder">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                  </svg>
                 </div>
-                <p class="card-text mb-2">
-                  <i class="fas fa-map-marker-alt" style="color: #2d6a4f;"></i>
-                  <%= plant.location %>
-                </p>
-                <p class="card-text">
-                  <i class="fas fa-tint" style="color: #74c0fc;"></i>
-                  <% if plant.last_watered_on %>
-                    <% days_ago = (Date.today - plant.last_watered_on).to_i %>
-                    <% if days_ago == 0 %>
-                      Watered today
-                    <% elsif days_ago == 1 %>
-                      Watered yesterday
-                    <% elsif days_ago > 7 %>
-                      <span class="text-danger fw-bold">Watered <%= days_ago %> days ago!</span>
-                    <% else %>
-                      Watered <%= days_ago %> days ago
-                    <% end %>
-                  <% else %>
-                    <span class="text-danger">Never watered</span>
-                  <% end %>
-                </p>
-              </div>
-            <% end %>
-            <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">
-              <%= button_to watered_today_plant_path(plant), method: :patch, class: "btn btn-primary w-100" do %>
-                <i class="fas fa-tint"></i> Watered today
               <% end %>
             </div>
+
+            <div class="plant-card__body">
+              <h2 class="plant-card__name"><%= plant.nickname %></h2>
+              <p class="plant-card__species"><%= plant.species %></p>
+
+              <dl class="plant-card__meta">
+                <div class="plant-card__meta-row">
+                  <dt>Where</dt>
+                  <dd><%= plant.location.presence || "Not set" %></dd>
+                </div>
+                <div class="plant-card__meta-row">
+                  <dt>Water</dt>
+                  <dd class="<%= "is-overdue" if watering_overdue?(plant) %>">
+                    <%= watering_status(plant) %>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          <% end %>
+
+          <div class="plant-card__action">
+            <%= button_to "Watered today", watered_today_plant_path(plant), method: :patch, class: "btn btn-leafy-quiet" %>
           </div>
         </div>
       <% end %>
     </div>
   <% else %>
-    <div class="text-center py-5">
-      <p style="font-size: 4rem;">🌱</p>
-      <h3>No plants yet!</h3>
-      <p class="text-muted">Add your first plant to get started.</p>
-      <%= link_to new_plant_path, class: "btn btn-success btn-lg mt-2" do %>
-        <i class="fas fa-plus"></i> Add Your First Plant
-      <% end %>
+    <div class="plants-empty">
+      <h2>No plants yet</h2>
+      <p>Add your first plant and Leafy can start helping you look after it.</p>
+      <%= link_to "Add a plant", new_plant_path, class: "btn btn-leafy" %>
     </div>
   <% end %>
 </div>
