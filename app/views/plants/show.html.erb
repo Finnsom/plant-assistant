@@ -1,61 +1,43 @@
- <div class="container mt-4">
-  <%= link_to plants_path, class: "text-decoration-none mb-3 d-inline-block" do %>
-    <i class="fas fa-arrow-left"></i> Back to My Plants
-  <% end %>
+<div class="plant-show">
+  <%= link_to "← My plants", plants_path, class: "plant-show__back" %>
 
-  <div class="card shadow-sm border-0 mt-3" style="border-radius: 12px;">
-    <div class="card-body p-4">
-      <div class="d-flex justify-content-between align-items-start">
-        <div>
-          <h1 class="mb-1"><%= @plant.nickname %></h1>
-          <p class="text-muted fst-italic fs-5"><%= @plant.species %></p>
+  <div class="plant-show__layout">
+    <div class="plant-show__media">
+      <% if @plant.photo.attached? %>
+        <%= image_tag @plant.photo, class: "plant-show__photo", alt: @plant.nickname %>
+      <% else %>
+        <div class="plant-show__placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+            <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+          </svg>
         </div>
-        <% if @plant.photo.attached? %>
-          <%= image_tag @plant.photo, class: "plant-photo plant-photo--detail", alt: "Photo of #{@plant.nickname}" %>
-        <% else %>
-          <span style="font-size: 3rem;">🪴</span>
-        <% end %>
-      </div>
+      <% end %>
+    </div>
 
-      <hr>
+    <div class="plant-show__detail">
+      <h1 class="plant-show__name"><%= @plant.nickname %></h1>
+      <p class="plant-show__species"><%= @plant.species %></p>
 
-      <div class="row mt-3">
-        <div class="col-md-6">
-          <p class="fs-5">
-            <i class="fas fa-map-marker-alt" style="color: #2d6a4f;"></i>
-            <strong>Location:</strong> <%= @plant.location %>
-          </p>
+      <dl class="plant-show__meta">
+        <div class="plant-show__meta-row">
+          <dt>Where</dt>
+          <dd><%= @plant.location.presence || "Not set" %></dd>
         </div>
-        <div class="col-md-6">
-          <p class="fs-5">
-            <i class="fas fa-tint" style="color: #74c0fc;"></i>
-            <strong>Last Watered:</strong>
-            <% if @plant.last_watered_on %>
-              <%= @plant.last_watered_on.strftime("%B %d, %Y") %>
-              <% days_ago = (Date.today - @plant.last_watered_on).to_i %>
-              <small class="text-muted">(<%= days_ago %> days ago)</small>
-            <% else %>
-              <span class="text-danger">Never</span>
-            <% end %>
-          </p>
-          <div class="d-flex justify-content-md-end">
-            <%= button_to watered_today_plant_path(@plant), method: :patch, class: "btn btn-primary" do %>
-              <i class="fas fa-tint"></i> Watered today
-            <% end %>
-          </div>
+        <div class="plant-show__meta-row">
+          <dt>Water</dt>
+          <dd class="<%= "is-overdue" if watering_overdue?(@plant) %>">
+            <%= watering_status(@plant) %>
+          </dd>
         </div>
-      </div>
+      </dl>
 
-      <div class="mt-4 d-flex gap-2">
-        <%= button_to plant_chats_path(@plant), method: :post, class: "btn btn-success" do %>
-          <i class="fas fa-comment"></i> Ask AI About This Plant
-        <% end %>
-        <%= link_to edit_plant_path(@plant), class: "btn btn-outline-warning" do %>
-          <i class="fas fa-edit"></i> Edit
-        <% end %>
-        <%= button_to plant_path(@plant), method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "Are you sure you want to delete #{@plant.nickname}?" } do %>
-          <i class="fas fa-trash"></i> Delete
-        <% end %>
+      <%= button_to "Ask about this plant", plant_chats_path(@plant), method: :post, class: "btn btn-leafy plant-show__ask" %>
+
+      <div class="plant-show__secondary">
+        <%= button_to "Watered today", watered_today_plant_path(@plant), method: :patch, class: "btn btn-leafy-quiet" %>
+        <%= link_to "Edit", edit_plant_path(@plant), class: "btn btn-leafy-quiet" %>
+        <%= button_to "Delete", plant_path(@plant), method: :delete, class: "btn btn-leafy-danger", data: { turbo_confirm: "Delete #{@plant.nickname}? This can't be undone." } %>
       </div>
     </div>
   </div>
