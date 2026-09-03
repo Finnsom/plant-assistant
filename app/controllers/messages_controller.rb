@@ -82,7 +82,7 @@ class MessagesController < ApplicationController
     attachments = image_path ? { image: image_path } : {}
 
     @ruby_llm_chat.ask(prompt, with: attachments) do |chunk|
-      next if chunk.content.blank?
+      next if chunk.content.nil?
 
       @assistant_message.content += chunk.content
       broadcast_replace(@assistant_message)
