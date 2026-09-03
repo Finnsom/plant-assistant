@@ -2,3 +2,27 @@ body {
   background-color: $paper;
   color: $ink;
 }
+
+.plant-photo {
+  display: block;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+
+.plant-photo--card {
+  width: 4rem;
+  height: 4rem;
+}
+
+.plant-photo--detail {
+  width: 7rem;
+  height: 7rem;
+}
+
+.plant-photo-preview {
+  display: block;
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}

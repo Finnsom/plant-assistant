@@ -1,7 +1,10 @@
 <% if message.role == "user" %>
   <div class="message-user">
     <div class="message-user__bubble">
-      <%= raw(render_markdown(message.content)) %>
+      <% if message.image.attached? %>
+        <%= image_tag message.image, class: "message-user__image", alt: "Uploaded plant photo" %>
+      <% end %>
+      <%= raw(render_markdown(message.content)) if message.content.present? %>
     </div>
   </div>
 <% elsif message.role == "assistant" %>

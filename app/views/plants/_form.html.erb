@@ -2,6 +2,14 @@
   <%= f.input :nickname %>
   <%= f.input :species %>
   <%= f.input :location %>
-  <%= f.input :last_watered_on, as: :date %>
+  <%= f.input :last_watered_on, as: :date, html5: true %>
+  <% if plant.photo.attached? %>
+    <%= image_tag plant.photo, class: "plant-photo-preview mb-2", alt: "Current photo of #{plant.nickname}" %>
+  <% end %>
+  <%= f.input :photo,
+              as: :file,
+              label: plant.photo.attached? ? "Replace plant photo" : "Plant photo",
+              hint: "Optional. JPEG, PNG, or WebP, up to 10 MB.",
+              input_html: { accept: "image/jpeg,image/png,image/webp" } %>
   <%= f.submit class: "btn btn-success" %>
 <% end %>

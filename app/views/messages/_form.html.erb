@@ -1,8 +1,13 @@
 <%= simple_form_for [chat, message], html: { class: "chat-form", data: { controller: "thinking", action: "submit->thinking#call" } } do |f| %>
   <% if chat.messages.any? %>
-    <%= f.input :content, label: "Anything else?", required: true, placeholder: "How often should I do that?" %>
+    <%= f.input :content, label: "Anything else?", required: false, placeholder: "How often should I do that?" %>
   <% else %>
-    <%= f.input :content, label: "What's wrong with your plant?", required: true, placeholder: "The bottom leaves are going yellow..." %>
+    <%= f.input :content, label: "What's wrong with your plant?", required: false, placeholder: "Describe the problem, upload a photo, or do both..." %>
   <% end %>
+  <%= f.input :image,
+              as: :file,
+              label: "Add a photo",
+              hint: "You can ask with just a photo. JPEG, PNG, or WebP, up to 10 MB.",
+              input_html: { accept: "image/jpeg,image/png,image/webp" } %>
   <%= f.button :submit, "Ask", class: "btn", data: { thinking_target: "button" } %>
 <% end %>
