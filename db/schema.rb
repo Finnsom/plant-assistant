@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_03_115738) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_03_130000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -66,6 +66,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_03_115738) do
     t.date "last_watered_on"
     t.string "location"
     t.string "nickname"
+    t.boolean "outside", default: false, null: false
     t.string "species"
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false

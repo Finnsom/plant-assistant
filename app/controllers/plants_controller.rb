@@ -1,6 +1,7 @@
 class PlantsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_plant, only: %i[show edit update destroy watered_today]
+  before_action :set_weather, only: %i[index show]
 
   def index
     @plants = current_user.plants
@@ -50,6 +51,10 @@ class PlantsController < ApplicationController
   end
 
   def plant_params
-    params.require(:plant).permit(:nickname, :species, :location, :last_watered_on, :photo)
+    params.require(:plant).permit(:nickname, :species, :location, :last_watered_on, :photo, :outside)
+  end
+
+  def set_weather
+    @weather = WeatherForecast.current
   end
 end

@@ -2,6 +2,12 @@
   <%= f.input :nickname %>
   <%= f.input :species %>
   <%= f.input :location %>
+  <%= f.input :outside,
+              as: :boolean,
+              label: "This plant is kept outside",
+              hint: "Outdoor plants will receive warnings when dangerous weather is forecast.",
+              wrapper_html: { class: "form-switch" },
+              input_html: { role: "switch" } %>
   <%= f.input :last_watered_on, as: :date, html5: true %>
   <% if plant.photo.attached? %>
     <%= image_tag plant.photo, class: "plant-photo-preview mb-2", alt: "Current photo of #{plant.nickname}" %>

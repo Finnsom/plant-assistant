@@ -1,0 +1,22 @@
+require "test_helper"
+
+class PagesControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
+  test "get started links signed-out visitors to sign in" do
+    get root_url
+
+    assert_response :success
+    assert_select "a[href=?]", new_user_session_path, text: "Get started"
+  end
+
+  test "get started links signed-in users to their plants" do
+    user = User.create!(email: "home-page@example.com", password: "password")
+    sign_in user
+
+    get root_url
+
+    assert_response :success
+    assert_select "a[href=?]", plants_path, text: "Get started"
+  end
+end

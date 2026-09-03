@@ -6,10 +6,6 @@
       Add your plants, snap a photo when something looks off, and get a diagnosis
       based on the plant you actually own.
     </p>
-    <% if user_signed_in? %>
-      <%= link_to "My plants", plants_path, class: "btn btn-leafy btn-lg" %>
-    <% else %>
-      <%= link_to "Get started", new_user_registration_path, class: "btn btn-leafy btn-lg" %>
-    <% end %>
+    <%= link_to "Get started", user_signed_in? ? plants_path : new_user_session_path, class: "btn btn-leafy btn-lg" %>
   </div>
 </div>

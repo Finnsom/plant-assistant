@@ -13,7 +13,7 @@ class PlantsControllerTest < ActionDispatch::IntegrationTest
     get plant_url(@plant)
 
     assert_response :success
-    assert_select ".row .col-md-6" do
+    assert_select ".plant-show__meta-row" do
       assert_select "form[action=?]", watered_today_plant_path(@plant) do
         assert_select "button", text: /Watered today/
       end

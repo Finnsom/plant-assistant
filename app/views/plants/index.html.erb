@@ -11,7 +11,7 @@
           <%= link_to plant_path(plant), class: "plant-card__link" do %>
             <div class="plant-card__media">
               <% if plant.photo.attached? %>
-                <%= image_tag plant.photo, class: "plant-card__photo", alt: plant.nickname %>
+                <%= image_tag plant.photo, class: "plant-card__photo", alt: "Photo of #{plant.nickname}" %>
               <% else %>
                 <div class="plant-card__placeholder">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
@@ -25,6 +25,13 @@
             <div class="plant-card__body">
               <h2 class="plant-card__name"><%= plant.nickname %></h2>
               <p class="plant-card__species"><%= plant.species %></p>
+
+              <% if plant.outside? && @weather&.danger_warning %>
+                <div class="weather-warning mb-3" role="alert">
+                  <i class="fas fa-triangle-exclamation"></i>
+                  <%= @weather.danger_warning %>
+                </div>
+              <% end %>
 
               <dl class="plant-card__meta">
                 <div class="plant-card__meta-row">

@@ -4,7 +4,7 @@
   <div class="plant-show__layout">
     <div class="plant-show__media">
       <% if @plant.photo.attached? %>
-        <%= image_tag @plant.photo, class: "plant-show__photo", alt: @plant.nickname %>
+        <%= image_tag @plant.photo, class: "plant-show__photo", alt: "Photo of #{@plant.nickname}" %>
       <% else %>
         <div class="plant-show__placeholder">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
@@ -19,6 +19,13 @@
       <h1 class="plant-show__name"><%= @plant.nickname %></h1>
       <p class="plant-show__species"><%= @plant.species %></p>
 
+      <% if @plant.outside? && @weather&.danger_warning %>
+        <div class="weather-warning mb-3" role="alert">
+          <i class="fas fa-triangle-exclamation"></i>
+          <strong><%= @weather.danger_warning %></strong>
+        </div>
+      <% end %>
+
       <dl class="plant-show__meta">
         <div class="plant-show__meta-row">
           <dt>Where</dt>
@@ -26,16 +33,35 @@
         </div>
         <div class="plant-show__meta-row">
           <dt>Water</dt>
-          <dd class="<%= "is-overdue" if watering_overdue?(@plant) %>">
-            <%= watering_status(@plant) %>
+          <dd>
+            <span class="<%= "is-overdue" if watering_overdue?(@plant) %>"><%= watering_status(@plant) %></span>
+            <%= button_to "Watered today", watered_today_plant_path(@plant), method: :patch, class: "btn btn-leafy-quiet mt-2" %>
           </dd>
         </div>
       </dl>
 
-      <%= button_to "Ask about this plant", plant_chats_path(@plant), method: :post, class: "btn btn-leafy plant-show__ask" %>
+      <div class="weather-summary mt-4">
+        <div>
+          <span class="weather-summary__label">Today's weather</span>
+          <strong><%= WeatherForecast::LOCATION %></strong>
+        </div>
+        <% if @weather %>
+          <div class="weather-summary__conditions">
+            <strong><%= @weather.temperature.round %>°C</strong>
+            <span><%= @weather.description %></span>
+            <small>
+              High <%= @weather.today.maximum_temperature.round %>° ·
+              Low <%= @weather.today.minimum_temperature.round %>° ·
+              Rain <%= @weather.today.rainfall.round(1) %> mm
+            </small>
+          </div>
+        <% else %>
+          <span class="text-muted">Weather is temporarily unavailable.</span>
+        <% end %>
+      </div>
 
-      <div class="plant-show__secondary">
-        <%= button_to "Watered today", watered_today_plant_path(@plant), method: :patch, class: "btn btn-leafy-quiet" %>
+      <div class="plant-show__secondary mt-4">
+        <%= button_to "Ask about this plant", plant_chats_path(@plant), method: :post, class: "btn btn-leafy" %>
         <%= link_to "Edit", edit_plant_path(@plant), class: "btn btn-leafy-quiet" %>
         <%= button_to "Delete", plant_path(@plant), method: :delete, class: "btn btn-leafy-danger", data: { turbo_confirm: "Delete #{@plant.nickname}? This can't be undone." } %>
       </div>

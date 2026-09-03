@@ -26,3 +26,47 @@ body {
   object-fit: cover;
   border-radius: 0.75rem;
 }
+
+.weather-warning {
+  padding: 0.75rem 1rem;
+  color: #842029;
+  background: #f8d7da;
+  border: 1px solid #f1aeb5;
+  border-radius: 0.75rem;
+}
+
+.weather-summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  background: #eef6ff;
+  border: 1px solid #cfe2ff;
+  border-radius: 0.75rem;
+}
+
+.weather-summary__label,
+.weather-summary__conditions span,
+.weather-summary__conditions small {
+  display: block;
+}
+
+.weather-summary__label,
+.weather-summary__conditions small {
+  color: $bark;
+  font-size: 0.875rem;
+}
+
+.weather-summary__conditions {
+  text-align: right;
+}
+
+@media (max-width: 575.98px) {
+  .weather-summary {
+    flex-direction: column;
+  }
+
+  .weather-summary__conditions {
+    text-align: left;
+  }
+}
