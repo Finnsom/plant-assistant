@@ -1,11 +1,47 @@
-<div class="hero">
-  <div class="hero__inner text-center">
-    <h1 class="display-4">Leafy</h1>
-    <p class="lead">Know what's wrong with your houseplant, and what to do about it.</p>
-    <p class="mb-4">
-      Add your plants, snap a photo when something looks off, and get a diagnosis
-      based on the plant you actually own.
-    </p>
-    <%= link_to "Get started", user_signed_in? ? plants_path : new_user_session_path, class: "btn btn-leafy btn-lg" %>
-  </div>
-</div>
+<main class="home-landing">
+  <section class="home-hero">
+    <div class="home-hero__copy">
+      <span class="home-hero__eyebrow">Your personal plant companion</span>
+      <h1>Care that grows<br>with your plants.</h1>
+      <p>
+        Know what your houseplants need, spot problems from a photo,
+        and stay one step ahead of changing weather.
+      </p>
+      <%= link_to user_signed_in? ? "Explore my garden" : "Get started",
+                  user_signed_in? ? plants_path : new_user_session_path,
+                  class: "btn btn-leafy home-hero__button" %>
+    </div>
+
+    <div class="home-hero__media">
+      <%= image_tag "leafy-home-plants.png",
+                    alt: "Pothos, rubber plant, and monstera growing beside a sunny window" %>
+    </div>
+  </section>
+
+  <section class="garden-pulse" aria-label="What Leafy can do">
+    <strong>Today in your garden</strong>
+    <div class="garden-pulse__item garden-pulse__item--water"><span aria-hidden="true">◯</span>Watering reminders</div>
+    <div class="garden-pulse__item"><span aria-hidden="true">☀</span>Local weather protection</div>
+    <div class="garden-pulse__item"><span aria-hidden="true">✦</span>AI plant doctor ready</div>
+  </section>
+
+  <section class="home-features" aria-label="Leafy features">
+    <%= link_to user_signed_in? ? plants_path : new_user_session_path, class: "home-feature" do %>
+      <span class="home-feature__icon" aria-hidden="true">▣</span>
+      <span class="home-feature__copy">
+        <strong>Care reminders</strong>
+        <span>See what your plants need and keep every watering on track.</span>
+      </span>
+      <span class="home-feature__arrow" aria-hidden="true">→</span>
+    <% end %>
+
+    <%= link_to user_signed_in? ? plants_path : new_user_session_path, class: "home-feature" do %>
+      <span class="home-feature__icon" aria-hidden="true">◎</span>
+      <span class="home-feature__copy">
+        <strong>Photo diagnosis</strong>
+        <span>Upload a photo, describe the problem, and receive clear advice.</span>
+      </span>
+      <span class="home-feature__arrow" aria-hidden="true">→</span>
+    <% end %>
+  </section>
+</main>

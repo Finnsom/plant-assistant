@@ -17,6 +17,15 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     get root_url
 
     assert_response :success
-    assert_select "a[href=?]", plants_path, text: "Get started"
+    assert_select "a[href=?]", plants_path, text: "Explore my garden"
+  end
+
+  test "home displays the garden status and feature links" do
+    get root_url
+
+    assert_response :success
+    assert_select ".garden-pulse", text: /Today in your garden/
+    assert_select ".home-feature", count: 2
+    assert_select "img[alt*='Pothos']", count: 1
   end
 end
