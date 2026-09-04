@@ -11,9 +11,11 @@ class WeatherForecastTest < ActiveSupport::TestCase
   end
 
   test "warns about dangerous weather in the upcoming forecast" do
-    forecast = build_forecast(minimum_temperatures: [8.0, -1.0, 7.0])
+    travel_to Date.new(2026, 9, 3) do
+      forecast = build_forecast(minimum_temperatures: [8.0, -1.0, 7.0])
 
-    assert_equal "Bring inside - frost expected Friday", forecast.danger_warning
+      assert_equal "Bring inside - frost expected Friday", forecast.danger_warning
+    end
   end
 
   test "does not warn when conditions are not dangerous" do

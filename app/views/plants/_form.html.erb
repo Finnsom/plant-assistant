@@ -1,6 +1,43 @@
-<%= simple_form_for plant do |f| %>
+<% care_profile = plant.care_profile %>
+<% selected_species = care_profile&.fetch("latin_name", nil) || ("__other__" if plant.species.present?) %>
+
+<%= simple_form_for plant,
+                    html: {
+                      data: {
+                        controller: "plant-species",
+                        plant_species_identify_url_value: identify_plants_path
+                      }
+                    } do |f| %>
   <%= f.input :nickname %>
-  <%= f.input :species %>
+  <%= f.hidden_field :species,
+                     value: plant.species,
+                     data: { plant_species_target: "species" } %>
+
+  <div class="mb-3">
+    <%= label_tag :plant_species_choice, "Species", class: "form-label" %>
+    <%= select_tag :plant_species_choice,
+                   options_for_select(
+                     [["Choose a common houseplant", ""]] + PlantCareCatalog.options + [["Other — type the species", "__other__"]],
+                     selected_species
+                   ),
+                   class: "form-select",
+                   data: {
+                     plant_species_target: "select",
+                     action: "change->plant-species#syncSpecies"
+                   } %>
+  </div>
+
+  <div class="mb-3" data-plant-species-target="custom" <%= "hidden" unless selected_species == "__other__" %>>
+    <%= label_tag :plant_custom_species, "Type the species", class: "form-label" %>
+    <%= text_field_tag :plant_custom_species,
+                       care_profile ? nil : plant.species,
+                       class: "form-control",
+                       placeholder: "For example, Calathea orbifolia",
+                       data: {
+                         plant_species_target: "customInput",
+                         action: "input->plant-species#syncCustomSpecies"
+                       } %>
+  </div>
   <%= f.input :location %>
   <%= f.input :outside,
               as: :boolean,
@@ -16,6 +53,20 @@
               as: :file,
               label: plant.photo.attached? ? "Replace plant photo" : "Plant photo",
               hint: "Optional. JPEG, PNG, or WebP, up to 10 MB.",
-              input_html: { accept: "image/jpeg,image/png,image/webp" } %>
+              input_html: {
+                accept: "image/jpeg,image/png,image/webp",
+                data: { plant_species_target: "photo" }
+              } %>
+  <div class="plant-identify mb-3">
+    <button type="button"
+            class="btn btn-leafy-quiet"
+            data-plant-species-target="identifyButton"
+            data-action="plant-species#identify">
+      Identify via photo
+    </button>
+    <small class="plant-identify__status text-muted"
+           data-plant-species-target="status"
+           aria-live="polite"></small>
+  </div>
   <%= f.submit class: "btn btn-success" %>
 <% end %>

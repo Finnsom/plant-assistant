@@ -1,0 +1,25 @@
+<section class="care-guide" aria-labelledby="care-guide-title">
+  <div class="care-guide__heading">
+    <span class="care-guide__icon" aria-hidden="true">🌿</span>
+    <div>
+      <span class="care-guide__eyebrow">Plant care</span>
+      <h2 id="care-guide-title">Care guide</h2>
+    </div>
+  </div>
+
+  <% if (profile = plant.care_profile) %>
+    <div class="care-guide__grid">
+      <div><strong>Light</strong><span><%= profile.fetch("light") %></span></div>
+      <div><strong>Water</strong><span><%= profile.fetch("water") %></span></div>
+      <div><strong>Temperature</strong><span><%= profile.fetch("temperature") %></span></div>
+      <div><strong>Humidity</strong><span><%= profile.fetch("humidity") %></span></div>
+    </div>
+    <p class="care-guide__tip"><strong>Good to know:</strong> <%= profile.fetch("tip") %></p>
+  <% else %>
+    <p class="care-guide__empty">
+      This is a custom species, so there is no saved care guide yet. Ask the plant assistant for advice tailored to it.
+    </p>
+  <% end %>
+
+  <small>Care needs can vary with the season, pot, and position in your home.</small>
+</section>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :plants do
+    post :identify, on: :collection
     patch :watered_today, on: :member
     resources :chats, only: [:index, :create]
   end

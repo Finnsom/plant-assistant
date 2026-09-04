@@ -299,6 +299,91 @@
   }
 }
 
+.plant-identify {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+
+  .btn {
+    width: auto;
+  }
+}
+
+.plant-identify__status {
+  display: block;
+}
+
+.care-guide {
+  background: $moss-light;
+  border: 1px solid $line;
+  border-radius: 0.875rem;
+  padding: 1.25rem;
+
+  > small {
+    color: $bark;
+  }
+}
+
+.care-guide__heading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+
+  h2 {
+    color: $ink;
+    font-family: $headers-font;
+    font-size: 1.25rem;
+    margin: 0;
+  }
+}
+
+.care-guide__icon {
+  font-size: 1.5rem;
+}
+
+.care-guide__eyebrow {
+  color: $bark;
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.care-guide__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.875rem;
+
+  @media (max-width: 36rem) {
+    grid-template-columns: 1fr;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  strong {
+    color: $ink;
+    font-size: 0.8rem;
+  }
+
+  span {
+    color: $bark;
+    font-size: 0.875rem;
+  }
+}
+
+.care-guide__tip,
+.care-guide__empty {
+  color: $ink;
+  font-size: 0.875rem;
+  margin: 1rem 0 0.5rem;
+}
+
 .btn-leafy-danger {
   background-color: transparent;
   border: 1px solid $line;

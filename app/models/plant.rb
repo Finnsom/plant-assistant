@@ -10,6 +10,10 @@ class Plant < ApplicationRecord
   validates :species, presence: true
   validate :acceptable_photo
 
+  def care_profile
+    PlantCareCatalog.find(species)
+  end
+
   private
 
   def acceptable_photo

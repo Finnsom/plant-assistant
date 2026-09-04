@@ -23,6 +23,20 @@ class PlantsController < ApplicationController
     end
   end
 
+  def identify
+    photo = params[:photo]
+    unless valid_photo?(photo)
+      return render json: { error: "Choose a plant photo first." }, status: :unprocessable_entity
+    end
+
+    render json: { species: PlantIdentifier.identify(photo) }
+  rescue ArgumentError => e
+    render json: { error: e.message }, status: :unprocessable_entity
+  rescue StandardError => e
+    Rails.logger.error("Plant identification failed: #{e.class}: #{e.message}")
+    render json: { error: "The plant could not be identified right now. Please try again." }, status: :bad_gateway
+  end
+
   def edit
   end
 
@@ -56,5 +70,10 @@ class PlantsController < ApplicationController
 
   def set_weather
     @weather = WeatherForecast.current
+  end
+
+  def valid_photo?(photo)
+    photo.respond_to?(:content_type) && Plant::IMAGE_CONTENT_TYPES.include?(photo.content_type) &&
+      photo.size <= Plant::MAX_IMAGE_SIZE
   end
 end

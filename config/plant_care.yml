@@ -1,0 +1,135 @@
+monstera_deliciosa:
+  latin_name: Monstera deliciosa
+  common_name: Swiss cheese plant
+  aliases: [Monstera, Swiss cheese plant]
+  light: Bright, indirect light
+  water: Water when the top 3–5 cm of soil feels dry
+  temperature: 18–29°C; protect from temperatures below 10°C
+  humidity: Prefers moderate to high humidity
+  tip: Rotate the pot regularly so growth stays even.
+dracaena_trifasciata:
+  latin_name: Dracaena trifasciata
+  common_name: Snake plant
+  aliases: [Snake plant, Sansevieria, Sansevieria trifasciata]
+  light: Low light to bright, indirect light
+  water: Let the soil dry completely before watering
+  temperature: 15–29°C; protect from cold draughts
+  humidity: Normal household humidity
+  tip: Overwatering is a much greater risk than underwatering.
+epipremnum_aureum:
+  latin_name: Epipremnum aureum
+  common_name: Golden pothos
+  aliases: [Pothos, Golden pothos, Devil's ivy]
+  light: Medium to bright, indirect light
+  water: Water when the top 3–5 cm of soil feels dry
+  temperature: 18–29°C; protect from temperatures below 10°C
+  humidity: Normal household humidity; appreciates extra humidity
+  tip: Trim long vines to encourage fuller growth.
+spathiphyllum_wallisii:
+  latin_name: Spathiphyllum wallisii
+  common_name: Peace lily
+  aliases: [Peace lily, Spathiphyllum]
+  light: Medium, indirect light
+  water: Keep lightly moist, but never waterlogged
+  temperature: 18–27°C; protect from cold draughts
+  humidity: Prefers moderate to high humidity
+  tip: Drooping often means it is thirsty, but check the soil first.
+chlorophytum_comosum:
+  latin_name: Chlorophytum comosum
+  common_name: Spider plant
+  aliases: [Spider plant]
+  light: Bright, indirect light
+  water: Water when the top 2–3 cm of soil feels dry
+  temperature: 13–27°C
+  humidity: Normal household humidity
+  tip: Brown tips can be reduced by using filtered or rain water.
+ficus_lyrata:
+  latin_name: Ficus lyrata
+  common_name: Fiddle-leaf fig
+  aliases: [Fiddle-leaf fig, Fiddle leaf fig]
+  light: Plenty of bright, indirect light
+  water: Water when the top 3–5 cm of soil feels dry
+  temperature: 16–27°C; avoid sudden temperature changes
+  humidity: Prefers moderate humidity
+  tip: Keep it in a consistent position away from draughts.
+zamioculcas_zamiifolia:
+  latin_name: Zamioculcas zamiifolia
+  common_name: ZZ plant
+  aliases: [ZZ plant, Zanzibar gem]
+  light: Low light to bright, indirect light
+  water: Let most of the soil dry before watering
+  temperature: 15–29°C
+  humidity: Normal household humidity
+  tip: Its thick roots store water, so it tolerates missed waterings.
+ficus_elastica:
+  latin_name: Ficus elastica
+  common_name: Rubber plant
+  aliases: [Rubber plant, Rubber tree]
+  light: Bright, indirect light
+  water: Water when the top 3–5 cm of soil feels dry
+  temperature: 16–27°C
+  humidity: Normal to moderate household humidity
+  tip: Wipe the broad leaves occasionally so they can absorb light.
+aloe_vera:
+  latin_name: Aloe vera
+  common_name: Aloe vera
+  aliases: [Aloe]
+  light: Bright light with some direct sun
+  water: Soak thoroughly, then let the soil dry completely
+  temperature: 13–27°C; protect from frost
+  humidity: Prefers dry household air
+  tip: Use a pot with excellent drainage.
+dypsis_lutescens:
+  latin_name: Dypsis lutescens
+  common_name: Areca palm
+  aliases: [Areca palm, Butterfly palm]
+  light: Bright, indirect light
+  water: Keep lightly moist while allowing excess water to drain
+  temperature: 18–24°C; protect from cold draughts
+  humidity: Prefers moderate to high humidity
+  tip: Keep it away from radiators and drying vents.
+nephrolepis_exaltata:
+  latin_name: Nephrolepis exaltata
+  common_name: Boston fern
+  aliases: [Boston fern, Sword fern]
+  light: Medium to bright, indirect light
+  water: Keep the soil consistently lightly moist
+  temperature: 16–24°C
+  humidity: Needs high humidity
+  tip: Do not allow the root ball to dry out completely.
+phalaenopsis:
+  latin_name: Phalaenopsis
+  common_name: Moth orchid
+  aliases: [Moth orchid, Phalaenopsis orchid]
+  light: Bright, indirect light
+  water: Water when the roots turn silvery and the bark is nearly dry
+  temperature: 16–27°C
+  humidity: Prefers moderate humidity with airflow
+  tip: Drain the pot fully and keep water out of the crown.
+crassula_ovata:
+  latin_name: Crassula ovata
+  common_name: Jade plant
+  aliases: [Jade plant, Money plant]
+  light: Bright light with several hours of gentle sun
+  water: Let the soil dry completely before watering
+  temperature: 13–27°C; protect from frost
+  humidity: Prefers dry household air
+  tip: Soft leaves can indicate too much water.
+hedera_helix:
+  latin_name: Hedera helix
+  common_name: English ivy
+  aliases: [English ivy, Common ivy]
+  light: Bright, indirect light
+  water: Water when the top 2–3 cm of soil feels dry
+  temperature: 10–21°C; prefers cooler rooms
+  humidity: Prefers moderate humidity
+  tip: Check leaves regularly for spider mites.
+schlumbergera_truncata:
+  latin_name: Schlumbergera truncata
+  common_name: Christmas cactus
+  aliases: [Christmas cactus, Holiday cactus]
+  light: Bright, indirect light
+  water: Water when the top 2–3 cm of soil feels dry
+  temperature: 16–24°C; cooler nights encourage buds
+  humidity: Prefers moderate humidity
+  tip: Unlike desert cacti, it should not remain completely dry for long.
