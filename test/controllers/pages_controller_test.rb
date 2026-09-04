@@ -28,4 +28,12 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_select ".home-feature", count: 2
     assert_select "img[alt*='Pothos']", count: 1
   end
+
+  test "navbar uses the Leafy sprout logo" do
+    get root_url
+
+    assert_response :success
+    assert_select ".navbar-brand img.navbar-mark[src*='leafy-logo']", count: 1
+    assert_select ".navbar-mark", text: /🌿/, count: 0
+  end
 end

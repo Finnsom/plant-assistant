@@ -5,14 +5,15 @@
 }
 
 .navbar-mark {
-  font-size: 1.35rem;
-  line-height: 1;
+  display: block;
+  height: 2rem;
+  width: 2rem;
 }
 
 .navbar-wordmark {
   font-family: $headers-font;
-  font-weight: 700;
-  font-size: 1.25rem;
+  font-weight: 600;
+  font-size: 1.4rem;
   color: $moss;
   margin-left: 0.5rem;
 }
